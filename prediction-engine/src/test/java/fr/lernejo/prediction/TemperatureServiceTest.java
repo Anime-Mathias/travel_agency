@@ -2,30 +2,33 @@ package fr.lernejo.prediction;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TemperatureServiceTest {
 
     private final TemperatureService service = new TemperatureService();
+<<<<<<< HEAD
 
     @Test
-    void getting_temperature_of_an_unknown_country_throws() {
+    void TempPaysRincon() {
         Assertions.assertThatExceptionOfType(UnknownCountryException.class)
-            .isThrownBy(() -> service.getTemperature("toto"))
-            .withMessage("Unknown country: toto");
+            .isThrownBy(() -> service.getTemperature("hasard"))
+            .withMessage("Pays : 'hasard' inconnu.");
     }
 
     @ParameterizedTest
     @CsvSource({
+        "France",
         "france",
-        "FRANCE",
-        "France"
+        "FRANCE"
     })
-    void getting_the_temperature_of_france_gives_a_believable_value(String country) {
-        double temperature = service.getTemperature(country);
+    void TempFrance(String pays) {
+        double temperature = service.getTemperature(pays);
         assertThat(temperature).isBetween(8D, 32D);
     }
+=======
+>>>>>>> e944e64 (Correction des bugs/Fix bug)
 }
+
+
