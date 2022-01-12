@@ -42,16 +42,13 @@ public class USERapi {
         for (JSONInscript inscription : this.JSONR) {
             if (inscription.userName.equals(nom_utilisateur)) trouverOK = inscription;
         }
-
         if(trouverOK != null) {
             Queue queue = new LinkedList();
             for (String pays : this.pays) queue.add(pays);
             Iterator iteratorNoOK = queue.iterator();
-
             while(iteratorNoOK.hasNext()){
                 TempMoyenne((String) iteratorNoOK.next());
-            }
-            return PaysExceptionOK(trouverOK);
+            } return PaysExceptionOK(trouverOK);
         }
         else return new ResponseEntity<>("Le nom d'utilisateur n'existe pas.", HttpStatus.EXPECTATION_FAILED);
     }
