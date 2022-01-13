@@ -2,27 +2,23 @@ package fr.lernejo.travelsite;
 
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.*;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping(path = "/api")
 public class API {
 
-    public final PredictionEngineClient predictionEngineClient = new Launcher().predictionEngineClient();
-    public final USERapi APIServ = new USERapi(this.predictionEngineClient);
+    public final ArrayList<JSONInscript> predictionEngineClient = new ArrayList<JSONInscript>();
+    public final ArrayList<USERapi> APIServ = new ArrayList<USERapi>();
 
     @PostMapping(path = "/inscription")
-    public @ResponseBody Iterable<JSONInscript> newUser(@RequestBody JSONInscript post){
-        return this.APIServ.inscription_de_utilisateur(post);
+    public ArrayList<JSONInscript> JSONInscription1(@RequestBody JSONInscript newUser) {
+       predictionEngineClient.add(newUser);
+       return predictionEngineClient;
     }
 
     @GetMapping(path = "/travels")
     public @ResponseBody
     Object Destination(@RequestParam String userName){
-        return this.APIServ.arrival(userName);
+        return this.APIServ;
     }
 }
